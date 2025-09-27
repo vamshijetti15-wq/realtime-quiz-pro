@@ -16,39 +16,39 @@
     --popover-foreground: 71 85 105;
 
     /* Purple theme matching Figma */
-    --primary: 244 63 94;
-    --primary-foreground: 255 255 255;
-    --primary-glow: 244 80 94;
+    --primary: 340 89% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 338 88% 64%;
 
-    --secondary: 241 245 249;
-    --secondary-foreground: 71 85 105;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 25% 27%;
 
-    --muted: 248 250 252;
-    --muted-foreground: 148 163 184;
+    --muted: 210 40% 98%;
+    --muted-foreground: 215 16% 65%;
 
-    --accent: 244 63 94;
-    --accent-foreground: 255 255 255;
+    --accent: 340 89% 60%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 239 68 68;
-    --destructive-foreground: 255 255 255;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 226 232 240;
-    --input: 226 232 240;
-    --ring: 244 63 94;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 340 89% 60%;
 
     --radius: 0.75rem;
 
     /* Custom polling system colors */
-    --poll-purple: 244 63 94;
-    --poll-purple-light: 251 207 232;
-    --poll-purple-dark: 190 18 60;
-    --poll-bg: 248 250 252;
-    --poll-card: 255 255 255;
-    --poll-text: 71 85 105;
-    --poll-text-light: 148 163 184;
-    --poll-border: 226 232 240;
-    --poll-success: 34 197 94;
-    --poll-warning: 245 158 11;
+    --poll-purple: 340 89% 60%;
+    --poll-purple-light: 340 82% 91%;
+    --poll-purple-dark: 340 85% 41%;
+    --poll-bg: 210 40% 98%;
+    --poll-card: 0 0% 100%;
+    --poll-text: 215 25% 27%;
+    --poll-text-light: 215 16% 65%;
+    --poll-border: 214 32% 91%;
+    --poll-success: 142 76% 36%;
+    --poll-warning: 38 92% 50%;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--poll-purple)), hsl(var(--poll-purple-light)));
