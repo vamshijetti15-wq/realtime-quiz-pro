@@ -2,41 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Live Polling System Design System - Matching Figma Design */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 248 250 252;
+    --foreground: 226 232 240;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 255 255 255;
+    --card-foreground: 71 85 105;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 255 255 255;
+    --popover-foreground: 71 85 105;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Purple theme matching Figma */
+    --primary: 244 63 94;
+    --primary-foreground: 255 255 255;
+    --primary-glow: 244 80 94;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 241 245 249;
+    --secondary-foreground: 71 85 105;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 248 250 252;
+    --muted-foreground: 148 163 184;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 244 63 94;
+    --accent-foreground: 255 255 255;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 244 63 94;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Custom polling system colors */
+    --poll-purple: 244 63 94;
+    --poll-purple-light: 251 207 232;
+    --poll-purple-dark: 190 18 60;
+    --poll-bg: 248 250 252;
+    --poll-card: 255 255 255;
+    --poll-text: 71 85 105;
+    --poll-text-light: 148 163 184;
+    --poll-border: 226 232 240;
+    --poll-success: 34 197 94;
+    --poll-warning: 245 158 11;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--poll-purple)), hsl(var(--poll-purple-light)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--poll-bg)), hsl(var(--card)));
+    
+    /* Shadows */
+    --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-poll: 0 4px 12px rgba(244, 63, 94, 0.15);
+    
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +125,45 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[hsl(var(--poll-bg))] text-[hsl(var(--poll-text))] font-sans;
+  }
+}
+
+/* Custom components for polling system */
+@layer components {
+  .poll-card {
+    @apply bg-[hsl(var(--poll-card))] rounded-xl shadow-[var(--shadow-card)] border border-[hsl(var(--poll-border))] transition-[var(--transition-smooth)];
+  }
+  
+  .poll-card:hover {
+    @apply shadow-[var(--shadow-lg)] transform scale-[1.02];
+  }
+  
+  .poll-button-primary {
+    @apply bg-[hsl(var(--poll-purple))] hover:bg-[hsl(var(--poll-purple-dark))] text-white font-medium py-3 px-6 rounded-lg transition-[var(--transition-smooth)] shadow-[var(--shadow-poll)];
+  }
+  
+  .poll-button-secondary {
+    @apply bg-[hsl(var(--secondary))] hover:bg-[hsl(var(--muted))] text-[hsl(var(--poll-text))] font-medium py-3 px-6 rounded-lg transition-[var(--transition-smooth)];
+  }
+  
+  .poll-option {
+    @apply bg-[hsl(var(--poll-card))] border-2 border-[hsl(var(--poll-border))] hover:border-[hsl(var(--poll-purple))] hover:bg-[hsl(var(--poll-purple-light))/10] rounded-lg p-4 transition-[var(--transition-smooth)] cursor-pointer;
+  }
+  
+  .poll-option.selected {
+    @apply border-[hsl(var(--poll-purple))] bg-[hsl(var(--poll-purple-light))/20] text-[hsl(var(--poll-purple-dark))];
+  }
+  
+  .poll-progress-bar {
+    @apply bg-[hsl(var(--poll-purple))] h-2 rounded-full transition-all duration-500 ease-out;
+  }
+  
+  .poll-timer {
+    @apply text-[hsl(var(--poll-warning))] font-bold text-lg animate-pulse;
+  }
+  
+  .poll-results-bar {
+    @apply bg-gradient-to-r from-[hsl(var(--poll-purple))] to-[hsl(var(--poll-purple-light))] rounded-lg h-8 flex items-center justify-between px-3 text-white font-medium transition-all duration-700;
   }
 }

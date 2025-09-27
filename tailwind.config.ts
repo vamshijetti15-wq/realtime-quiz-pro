@@ -47,6 +47,19 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Custom polling system colors
+        poll: {
+          purple: "hsl(var(--poll-purple))",
+          "purple-light": "hsl(var(--poll-purple-light))",
+          "purple-dark": "hsl(var(--poll-purple-dark))",
+          bg: "hsl(var(--poll-bg))",
+          card: "hsl(var(--poll-card))",
+          text: "hsl(var(--poll-text))",
+          "text-light": "hsl(var(--poll-text-light))",
+          border: "hsl(var(--poll-border))",
+          success: "hsl(var(--poll-success))",
+          warning: "hsl(var(--poll-warning))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

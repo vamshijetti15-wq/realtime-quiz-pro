@@ -1,12 +1,43 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { Users, GraduationCap } from "lucide-react";
+import RoleSelection from "@/components/RoleSelection";
+import TeacherDashboard from "@/components/TeacherDashboard";
+import StudentInterface from "@/components/StudentInterface";
 
 const Index = () => {
+  const [selectedRole, setSelectedRole] = useState<'teacher' | 'student' | null>(null);
+  const [studentName, setStudentName] = useState<string>('');
+
+  const handleRoleSelect = (role: 'teacher' | 'student') => {
+    setSelectedRole(role);
+  };
+
+  const handleStudentNameSubmit = (name: string) => {
+    setStudentName(name);
+  };
+
+  const resetToRoleSelection = () => {
+    setSelectedRole(null);
+    setStudentName('');
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-poll-bg">
+      {!selectedRole && (
+        <RoleSelection onRoleSelect={handleRoleSelect} />
+      )}
+      
+      {selectedRole === 'teacher' && (
+        <TeacherDashboard onBack={resetToRoleSelection} />
+      )}
+      
+      {selectedRole === 'student' && (
+        <StudentInterface 
+          studentName={studentName}
+          onNameSubmit={handleStudentNameSubmit}
+          onBack={resetToRoleSelection}
+        />
+      )}
     </div>
   );
 };
